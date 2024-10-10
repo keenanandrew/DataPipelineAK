@@ -1,20 +1,22 @@
 import java.io.File;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class B1TextLoader { // Declare a class
 
+    ConcurrentHashMap<String, String> documents = new ConcurrentHashMap<>();
     /**
      * First method: instantiate an object of this class
-     * And apply other methods to it, eg loadTextFile
-     * This is main, which means this is where Java starts running
+     * and apply other methods to it, eg loadTextFile.
+     * This is main, which means this is where Java starts running.
      * So we need to call other methods from in here
      */
 
     public static void main(String[] args) {
         B1TextLoader loader = new B1TextLoader();
-        loader.loadTextFile("BasicTextFile.txt");
+        loader.loadTextFile("ComplexTextFile.txt");
     }
 
     /**
@@ -33,16 +35,33 @@ public class B1TextLoader { // Declare a class
         try {
             BufferedReader br = new BufferedReader(new FileReader(f)); // an object, br, of class BufferedReader
             String line = br.readLine();
+            int counter = 0;
             while(line != null) {
-                System.out.println(br.ready());
-                System.out.println(line);
+                if(line.trim().length() > 0) { // trims whitespace and removes blank lines
+                    documents.put("doc" + counter, line);
+                    counter++;
+                }
                 line = br.readLine();
             }
             br.close();
         } catch (Exception e) {
             System.out.println("Error while loading file: " + e.getMessage());
         }
+        System.out.println("Loading complete. Documents loaded: " + documents.size());
+        countWordsInDocuments(documents);
+    }
+
+    public void countWordsInDocuments(ConcurrentHashMap<String, String> documents) {
+        // This is a way to apply the function cWISD to each key:value pair in documents
+        // one at a time
+        documents.forEach(this::countWordsInSingleDocument);
+    }
+
+    public void countWordsInSingleDocument(String key, String value) {
+        String[] words = value.split(" ");
+        System.out.println(key + " has " + words.length + " words.");
 
     }
 }
+
 
