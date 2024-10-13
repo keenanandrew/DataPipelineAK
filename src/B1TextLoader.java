@@ -6,7 +6,15 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class B1TextLoader { // Declare a class
 
+
+    /**
+     * Here we start to build up the variables of an object of class B1TextLoader
+     * The first we come across is a ConcurrentHashMap we name 'documents'
+     * Will we later make a constructor?
+     */
+
     ConcurrentHashMap<String, String> documents = new ConcurrentHashMap<>();
+
     /**
      * First method: instantiate an object of this class
      * and apply other methods to it, eg loadTextFile.
