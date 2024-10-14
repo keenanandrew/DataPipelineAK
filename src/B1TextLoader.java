@@ -17,7 +17,7 @@ public class B1TextLoader { // Declare a class
 
     /**
      * First method: instantiate an object of this class
-     * and apply other methods to it, eg loadTextFile.
+     * and apply other methods to it, e.g. loadTextFile.
      * This is main, which means this is where Java starts running.
      * So we need to call other methods from in here
      */
@@ -59,8 +59,11 @@ public class B1TextLoader { // Declare a class
         countWordsInDocuments(documents);
     }
 
+
+    // TODO - Fork and implement using Java Stream rather than BufferedReader
+
     public void countWordsInDocuments(ConcurrentHashMap<String, String> documents) {
-        // This is a way to apply the function cWISD to each key:value pair in documents
+        // This is a way to apply the function countWordsInSingleDocument to each key:value pair in documents
         // one at a time
         documents.forEach(this::countWordsInSingleDocument);
     }
@@ -68,7 +71,6 @@ public class B1TextLoader { // Declare a class
     public void countWordsInSingleDocument(String key, String value) {
         String[] words = value.split(" ");
         System.out.println(key + " has " + words.length + " words.");
-
     }
 }
 
