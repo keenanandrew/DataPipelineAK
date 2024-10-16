@@ -11,6 +11,11 @@ public class JSONIOHelper {
     JSONObject rootObject;
     JSONObject documentsObject;
 
+    /**
+     * This method creates two JSONObjects
+     * rootObject, the outer wrapper
+     * documentsObject, the inner content
+     */
     public void createBasicJSONStructure() {
 
         rootObject = new JSONObject();
@@ -20,6 +25,14 @@ public class JSONIOHelper {
 
     }
 
+    /**
+     * This method goes through each 'entry'
+     * (that's a k:v pair)
+     * in my ConcurrentHashMap, 'documents'
+     * gets the key and the value out
+     * and 'puts' them in documentsObject
+     * @param documents
+     */
     public void addDocumentsToJSONStructure(ConcurrentHashMap<String, String> documents) {
 
         // documentsObject.putAll(documents);
@@ -28,6 +41,19 @@ public class JSONIOHelper {
             documentsObject.put(entry.getKey(), entry.getValue());
         }
     }
+
+
+    /**
+     * This method takes the contents of rootObject
+     * Including its child objects!
+     * Turns it into a string
+     * And then uses a FileWriter to write that string
+     * To the file specified via...
+     * @param filename
+     * It also uses a try/catch block
+     * Which will let us know if an exception is thrown
+     * And close the FileWriter for us!
+     */
 
     public void saveJSON(String filename) {
 
