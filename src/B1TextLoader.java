@@ -24,7 +24,8 @@ public class B1TextLoader { // Declare a class
 
     public static void main(String[] args) {
         B1TextLoader loader = new B1TextLoader();
-        loader.loadTextFile("ComplexTextFile.txt");
+        loader.loadTextFile("BasicTextFile.txt");
+        loader.saveDocumentsToJSON("DataStore.json");
     }
 
     /**
@@ -71,6 +72,13 @@ public class B1TextLoader { // Declare a class
     public void countWordsInSingleDocument(String key, String value) {
         String[] words = value.split(" ");
         System.out.println(key + " has " + words.length + " words.");
+    }
+
+    public void saveDocumentsToJSON(String filename) {
+        JSONIOHelper jsonIO = new JSONIOHelper();
+        jsonIO.createBasicJSONStructure();
+        jsonIO.addDocumentsToJSONStructure(documents);
+        jsonIO.saveJSON(filename);
     }
 }
 
