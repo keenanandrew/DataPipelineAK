@@ -24,7 +24,7 @@ public class B1TextLoader { // Declare a class
 
     public static void main(String[] args) {
         B1TextLoader loader = new B1TextLoader();
-        loader.loadTextFile("BasicTextFile.txt");
+        loader.loadTextFile("ComplexTextFile.txt");
         loader.saveDocumentsToJSON("DataStore.json");
     }
 

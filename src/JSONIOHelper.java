@@ -1,5 +1,7 @@
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -66,5 +68,28 @@ public class JSONIOHelper {
         } catch (Exception e){
             System.out.println("JSON save unsuccessful");
         }
+    }
+
+    public void loadJSON(String filename) {
+
+        createBasicJSONStructure();
+
+        try(FileReader file = new FileReader(filename)) {
+
+            JSONParser parser = new JSONParser();
+            rootObject = (JSONObject) parser.parse(file);
+
+            if(rootObject.get("documents") != null) {
+                documentsObject = (JSONObject) rootObject.get("documents");
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println("Right, loaded it. Documents: " + documentsObject.size());
+        }
+
+
     }
 }
