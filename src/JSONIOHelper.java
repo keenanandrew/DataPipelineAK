@@ -92,4 +92,16 @@ public class JSONIOHelper {
 
 
     }
+
+    public ConcurrentHashMap<String, String> getDocumentsFromJSONStructure() {
+
+        ConcurrentHashMap<String, String> documents = new ConcurrentHashMap<>();
+
+        for(String key: (Iterable<String>)documentsObject.keySet()){
+            documents.put(key, (String)documentsObject.get(key));
+        }
+        return documents;
+
+
+    }
 }
