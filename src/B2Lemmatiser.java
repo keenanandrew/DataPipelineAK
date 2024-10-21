@@ -8,14 +8,14 @@ public class B2Lemmatiser {
 
     public static void main(String[] args) {
     B2Lemmatiser lemmatiser = new B2Lemmatiser();
-    lemmatiser.startLemmatisation("DataStore.json");
+    lemmatiser.startLemmatisation(args);
     }
 
-    private void startLemmatisation(String filename) {
+    private void startLemmatisation(String[] args) {
 
         // System.out.println(filename);
         JSONIOHelper jsonIO = new JSONIOHelper();
-        jsonIO.loadJSON("DataStore.json");
+        jsonIO.loadJSON(args[0]);
         ConcurrentHashMap<String, String> documents = jsonIO.getDocumentsFromJSONStructure();
         ConcurrentHashMap<String, String> lemmatised = new ConcurrentHashMap<>();
 
@@ -26,7 +26,7 @@ public class B2Lemmatiser {
         }
 
         jsonIO.addLemmasToJSONStructure(lemmatised);
-        jsonIO.saveJSON(filename);
+        jsonIO.saveJSON(args[0]);
 
     }
 
