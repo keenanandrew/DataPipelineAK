@@ -12,6 +12,7 @@ public class JSONIOHelper {
     // just placeholders
     JSONObject rootObject;
     JSONObject documentsObject;
+    JSONObject lemmasObject;
 
     /**
      * This method creates two JSONObjects
@@ -22,8 +23,10 @@ public class JSONIOHelper {
 
         rootObject = new JSONObject();
         documentsObject = new JSONObject();
+        lemmasObject = new JSONObject();
 
         rootObject.put("documents", documentsObject);
+        rootObject.put("lemmas", lemmasObject);
 
     }
 
@@ -84,6 +87,10 @@ public class JSONIOHelper {
 
             }
 
+            if(rootObject.get("lemmas") != null) {
+                lemmasObject = (JSONObject) rootObject.get("lemmas");
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -95,7 +102,7 @@ public class JSONIOHelper {
 
     public ConcurrentHashMap<String, String> getDocumentsFromJSONStructure() {
 
-        ConcurrentHashMap<String, String> documents = new ConcurrentHashMap<>();
+        ConcurrentHashMap<String, String> documents = new ConcurrentHashMap<String, String>(); // just creates an empty CHM
 
         for(String key: (Iterable<String>)documentsObject.keySet()){
             documents.put(key, (String)documentsObject.get(key));
@@ -104,4 +111,24 @@ public class JSONIOHelper {
 
 
     }
+
+    public ConcurrentHashMap<String,String> getLemmasFromJSONStructure(){
+
+        ConcurrentHashMap<String, String> lemmas = new ConcurrentHashMap<String, String>(); // just creates an empty CHM
+
+        for(String key: (Iterable<String>)lemmasObject.keySet()){
+            lemmas.put(key, (String)lemmasObject.get(key));
+        }
+        return lemmas;
+    }
+
+    public void addLemmasToJSONStructure(ConcurrentHashMap<String, String> lemmas) {
+
+        for(Map.Entry<String, String> entry : lemmas.entrySet()) {
+            lemmasObject.put(entry.getKey(), entry.getValue());
+        }
+        rootObject.put("lemmas", lemmasObject);
+
+    }
+
 }
