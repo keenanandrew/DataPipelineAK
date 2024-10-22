@@ -3,8 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.concurrent.ConcurrentHashMap;
 
-// TODO - Tidy all comments and function explanations
-// TODO - Remove all unnecessary print statements
+// TODO - Fork and implement using Java Stream rather than BufferedReader
 // TODO - Put methods in a sensible order
 // TODO - Check everything is the right privacy, encapsulation, etc
 
@@ -13,25 +12,24 @@ public class B1TextLoader { // Declare a class
     ConcurrentHashMap<String, String> documents = new ConcurrentHashMap<>();
 
     /**
-     * First method: instantiate an object of this class
-     * and apply other methods to it, e.g. loadTextFile.
-     * This is main, which means this is where Java starts running.
-     * So we need to call other methods from in here
-     */
-
-    /**
-     *
+     * main method:
+     * Instantiates an object of this class and applies other methods to it, e.g. loadTextFile.
+     * Provide two arguments in the command line:
+     *      1. The name of the text file to be lemmatised, including its file extension (.txt)
+     *      2. The name of the JSON file where the text will be stored, including its file extension (.json)
      * @param args
      */
 
     public static void main(String[] args) {
+
         B1TextLoader loader = new B1TextLoader();
         loader.loadTextFile(args[0]);
         loader.saveDocumentsToJSON(args[1]);
+
     }
 
     /**
-     * Second method, LoadTextFile
+     * Second method: LoadTextFile
      * Takes filename of intended file as argument
      * Uses established File package
      * Has three steps:
@@ -42,6 +40,7 @@ public class B1TextLoader { // Declare a class
      */
 
     public void loadTextFile(String filename) {
+
         File f = new File(filename); // an object, f, of class File, is created
         try {
             BufferedReader br = new BufferedReader(new FileReader(f)); // an object, br, of class BufferedReader
@@ -59,22 +58,20 @@ public class B1TextLoader { // Declare a class
             System.out.println("Error while loading file: " + e.getMessage());
         }
         System.out.println("Loading complete. Documents loaded: " + documents.size());
-        countWordsInDocuments(documents);
+
+        // below method call removed as not needed for pipeline functionality
+        // countWordsInDocuments(documents);
     }
 
 
-    // TODO - Fork and implement using Java Stream rather than BufferedReader
-
-    public void countWordsInDocuments(ConcurrentHashMap<String, String> documents) {
-        // This is a way to apply the function countWordsInSingleDocument to each key:value pair in documents
-        // one at a time
-        documents.forEach(this::countWordsInSingleDocument);
-    }
-
-    public void countWordsInSingleDocument(String key, String value) {
-        String[] words = value.split(" ");
-        System.out.println(key + " has " + words.length + " words.");
-    }
+    /**
+     * Third method: saveDocumentsToJSON
+     * This method calls various methods from the JSONIOHelper package
+     * It creates the basic, empty JSON structure
+     * Then adds each document (each line of the .txt file)
+     * Then saves it, using the user-provided filename
+     * @param filename
+     */
 
     public void saveDocumentsToJSON(String filename) {
         JSONIOHelper jsonIO = new JSONIOHelper();
@@ -82,6 +79,25 @@ public class B1TextLoader { // Declare a class
         jsonIO.addDocumentsToJSONStructure(documents);
         jsonIO.saveJSON(filename);
     }
+
+    /**
+     * The below methods are commented out
+     * as they do not contribute to the pipeline's functionality.
+     * However they may be needed at a later stage,
+     * or for debugging.
+     * @param documents
+     */
+
+//    public void countWordsInDocuments(ConcurrentHashMap<String, String> documents) {
+//        // This is a way to apply the function countWordsInSingleDocument to each key:value pair in documents
+//        // one at a time
+//        documents.forEach(this::countWordsInSingleDocument);
+//    }
+//
+//    public void countWordsInSingleDocument(String key, String value) {
+//        String[] words = value.split(" ");
+//        System.out.println(key + " has " + words.length + " words.");
+//    }
 }
 
 
