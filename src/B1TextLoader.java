@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.util.concurrent.ConcurrentHashMap;
 
 // TODO - Fork and implement using Java Stream rather than BufferedReader
-// TODO - Put methods in a sensible order
 // TODO - Check everything is the right privacy, encapsulation, etc
 
 public class B1TextLoader { // Declare a class
@@ -13,7 +12,10 @@ public class B1TextLoader { // Declare a class
 
     /**
      * main method:
-     * Instantiates an object of this class and applies other methods to it, e.g. loadTextFile.
+     * Instantiates an object of this class
+     * Loads the provided text file into a ConcurrentHashMap
+     * Loads the contents of the ConcurrentHashMap into a JSON Object
+     * Saves the JSON Object as a .json file
      * Provide two arguments in the command line:
      *      1. The name of the text file to be lemmatised, including its file extension (.txt)
      *      2. The name of the JSON file where the text will be stored, including its file extension (.json)
