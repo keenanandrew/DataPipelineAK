@@ -4,6 +4,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+
+// TODO - Put methods in a sensible order
+// TODO - Complete commenting and explanation of functions / methods
+// TODO - Remove unnecessary print statements
+
+
 public class B2Lemmatiser {
 
     public static void main(String[] args) {

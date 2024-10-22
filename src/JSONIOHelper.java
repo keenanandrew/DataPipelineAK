@@ -6,6 +6,11 @@ import java.io.FileWriter;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+// TODO - put methods in a sensible order, bringing together similar ones
+// TODO - Check if any can be further abstracted
+// TODO - remove unnecessary print statements, old code, etc
+// TODO - Comment properly for the assignment
+
 public class JSONIOHelper {
 
     // declare the objects - not initialised though

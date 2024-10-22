@@ -3,6 +3,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.concurrent.ConcurrentHashMap;
 
+// TODO - Tidy all comments and function explanations
+// TODO - Remove all unnecessary print statements
+// TODO - Put methods in a sensible order
+// TODO - Check everything is the right privacy, encapsulation, etc
 
 public class B1TextLoader { // Declare a class
 
