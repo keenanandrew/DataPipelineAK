@@ -1,14 +1,10 @@
 import edu.stanford.nlp.simple.*;
-
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-
 // TODO - Put methods in a sensible order
 // TODO - Complete commenting and explanation of functions / methods
-// TODO - Remove unnecessary print statements
-
 
 public class B2Lemmatiser {
 
@@ -19,13 +15,11 @@ public class B2Lemmatiser {
 
     private void startLemmatisation(String[] args) {
 
-        // System.out.println(filename);
         JSONIOHelper jsonIO = new JSONIOHelper();
         jsonIO.loadJSON(args[0]);
         ConcurrentHashMap<String, String> documents = jsonIO.getDocumentsFromJSONStructure();
         ConcurrentHashMap<String, String> lemmatised = new ConcurrentHashMap<>();
 
-        System.out.println("And done something with a CHM! Length: " + documents.size());
 
         for(Map.Entry<String, String> entry : documents.entrySet()) {
             lemmatised.put(entry.getKey(), lemmatiseSingleDocument(entry.getValue()));
@@ -45,7 +39,6 @@ public class B2Lemmatiser {
         Sentence sentence = new Sentence(text);
         List<String> lemmas = sentence.lemmas();
         text = String.join(" ", lemmas);
-        System.out.println("Now in lemmatiseSingleDocument! " + text);
         return text;
 
 
