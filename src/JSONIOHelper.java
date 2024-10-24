@@ -7,8 +7,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 // TODO - put methods in a sensible order, bringing together similar ones
 // TODO - Check if any can be further abstracted
-// TODO - remove unnecessary print statements, old code, etc
-// TODO - Comment properly for the assignment
 
 public class JSONIOHelper {
 
@@ -152,7 +150,7 @@ public class JSONIOHelper {
 
     /**
      * Sixth method: getLemmasFromJSONStructure
-     * Not actually used, so I have to assume this is in the later modules
+     * Not actually used, so I have to assume this is for the later modules
      * Perhaps called from B3 or B4
      * @return
      */
